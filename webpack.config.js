@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var htmlWebpackPlugin = require('html-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 var publicPath = '/dist';
 var path = __dirname + '/dist'
@@ -44,7 +45,7 @@ module.exports = {
 		            }
 	            ]
             },{
-            test: /\.scss?$/,
+            test: /\.less?$/,
             use: [
                 { loader: 'style-loader' },
                 { loader: 'css-loader',
@@ -60,7 +61,7 @@ module.exports = {
                         },
                     },
                 },
-                { loader: 'sass-loader' },
+                { loader: 'less-loader' },
             ],
         },{
                 test: /\.(png|jpg|jpeg|gif)$/,
