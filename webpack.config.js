@@ -45,6 +45,25 @@ module.exports = {
 		            }
 	            ]
             },{
+                test: /\.css$/,
+                exclude: /^node_modules$/,
+			    use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            localIdentName: '[name]-[local]',
+                        } },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins() {
+                                return [autoprefixer];
+                            },
+                        },
+                    }
+                ]
+            },{
             test: /\.less?$/,
             use: [
                 { loader: 'style-loader' },

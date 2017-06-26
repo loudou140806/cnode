@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import Router from './route';
+import 'flex.css/dist/data-flex.css';
 
 function App() {
     return (

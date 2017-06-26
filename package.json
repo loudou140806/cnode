@@ -28,6 +28,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
+    "flex.css": "^1.1.7",
     "normalize.css": "^7.0.0",
     "prop-types": "^15.5.10",
     "query-string": "^4.3.4",
