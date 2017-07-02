@@ -1,15 +1,51 @@
-@nav-bg: #ccc;
+@style-bg: #eee;
+@style-main : #80bd01;
+@style-color: #2c3e50;
 
+a,ul,i,div{
+    padding: 0;
+    margin:0;
+}
+a{
+    text-decoration: none;
+}
+
+// 首页样式
 .nav{
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background: @nav-bg;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    background: @style-main;
+    a{
+        color: @style-bg;
+    }
 }
-.topNnav{
+
+.active{
+    background: lighten(@style-main, 10%);
+}
+
+.topNav{
+    text-align: center;
+    background: @style-main;
+    color: @style-bg;
+    height: 38px;
+    line-height: 38px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    a{
+        color: @style-bg;
+        padding: 3px 10px;
+        border-radius: 3px;
+    }
+}
+
+.topNavActive{
+    background: darken(@style-main, 10%);
 }

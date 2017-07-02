@@ -2,24 +2,24 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import _style from '../../style/style.less';
 
-function Home({match}) {
+function Home() {
     return (
         <div className={_style.topNav}>
             <ul data-flex="box:mean">
                 <li>
-                    <NavLink to={`${macth}.url`} activeClassName="active">全部</NavLink>
+                    <NavLink to="/home/all" activeClassName={_style.topNavActive}>全部</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/?tab=good" activeClassName="active">精华</NavLink>
+                    <NavLink to="/home/good" activeClassName={_style.topNavActive}>精华</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/?tab=share" activeClassName="active">分享</NavLink>
+                    <NavLink to={`/home/share`} activeClassName={_style.topNavActive}>分享</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/?tab=ask" activeClassName="active">问答</NavLink>
+                    <NavLink to={`/home/ask`} activeClassName={_style.topNavActive}>问答</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/?tab=job" activeClassName="active">招聘</NavLink>
+                    <NavLink to={`/home/job`} activeClassName={_style.topNavActive}>招聘</NavLink>
                 </li>
             </ul>
         </div>

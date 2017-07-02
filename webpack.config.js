@@ -52,7 +52,7 @@ module.exports = {
                     { loader: 'css-loader',
                         options: {
                             modules: true,
-                            localIdentName: '[name]-[local]',
+                            // localIdentName: '[name]-[local]',
                         } },
                     {
                         loader: 'postcss-loader',
@@ -70,7 +70,7 @@ module.exports = {
                 { loader: 'css-loader',
                     options: {
                         modules: true,
-                        localIdentName: '[name]-[local]',
+                        // localIdentName: '[name]-[local]',
                     } },
                 {
                     loader: 'postcss-loader',
@@ -93,7 +93,19 @@ module.exports = {
                         },
                     },
                 ],
-            },
+            },{
+                test: /\.(eot|woff|svg|ttf|woff2|gif|appcache)(\?|$)/,
+                exclude: /^node_modules$/,
+			      use: [
+			      	{
+					      loader: "file-loader",
+					      options: {
+					      	name: '[name].[ext]'
+					      }
+				      }
+			      	]
+			      // loader: 'file-loader?name=[name].[ext]'
+            }
         ]
     },
     plugins: plugin,
