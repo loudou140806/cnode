@@ -9,7 +9,7 @@ var server = new webpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
     proxy: {
         "/api/*": {
-            target: 'http://www.cnode.org/api',
+            target: 'https://cnodejs.org/',
             secure: false
         }
     },

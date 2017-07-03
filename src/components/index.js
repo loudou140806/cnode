@@ -1,12 +1,5 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
+import TabIcon from './TabIcon';
+import UserHeadImg from './UserHeadImg'
 
-function App({match}) {
-    return (
-        <div>
-            App
-        </div>
-    );
-}
-
-export default App;
+export { TabIcon, UserHeadImg };

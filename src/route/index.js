@@ -6,23 +6,22 @@ import Publish from '../pages/publish';
 import Message from '../pages/message';
 import Mine from '../pages/mine';
 const history = createBrowserHistory();
-import _style from '../style/style.less';
 
 function Routes() {
     return (
         <Router history={history}>
             <div>
-                <div className={_style.nav} data-flex="box:mean">
-                    <NavLink to="/home" activeClassName={_style.active}>
+                <div className="nav" data-flex="box:mean">
+                    <NavLink to="/home" activeClassName="active">
                         <i className="iconfont icon-shouye"></i>首页
                     </NavLink>
-                    <NavLink to="/publish" activeClassName={_style.active}>
+                    <NavLink to="/publish" activeClassName="active">
                         <i className="iconfont icon-shouye"></i>发表
                     </NavLink>
-                    <NavLink to="/message" activeClassName={_style.active}>
+                    <NavLink to="/message" activeClassName="active">
                         <i className="iconfont icon-xiaoxi"></i>消息
                     </NavLink>
-                    <NavLink to="/mine" activeClassName={_style.active}>
+                    <NavLink to="/mine" activeClassName="active">
                         <i className="iconfont icon-wode"></i>消息
                     </NavLink>
                 </div>

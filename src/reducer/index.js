@@ -1,13 +1,31 @@
-function counter(state = { count: 0 }, action) {
-  const count = state.count
+const initialState = {
+    page: 1, 
+    tab: '',
+    nextBtn: true, 
+    limit: 10, 
+    mdrender: false, 
+    lists: [],
+    isFetching: false
+};
+
+function fetchList(state = initialState, action) {
+  let newState;
   switch (action.type) {
-    case 'increase':
-      return { count: count + 1 }
+    case 'BEGIN_FETCH_LIST':
+      newState = Object.assign({}, state, {
+          isFetching: true
+      });
+      return newState;
+    case 'DONE_FETCH_LIST':
+      newState = Object.assign({}, state, {
+        lists: action.payload,
+      })
+      return newState;
     default:
       return state
   }
 }
 
 export default {
-  counter: counter
+  fetchList: fetchList
 };
