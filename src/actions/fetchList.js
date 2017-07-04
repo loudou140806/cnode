@@ -1,18 +1,17 @@
 import { Tool } from '../tool';
 
 let actions = {
-    fetchList: function() {
+    fetchList: function(options) {
         return function(dispatch, getState) {
             dispatch(actions.beginFetchList());
-
-            fetch('/api/v1/topics')
+            const url = Tool.setUrlParams('/api/v1/topics', options);
+            fetch(url)
                 .then(res => {
                     if(res.status != 200) {
                         dispatch(actions.failFetchList(res.statusText));
                     }
                     if(res.ok) {
                         res.json().then(function(data) {
-                            console.log(data);
                             dispatch(actions.doneFetchList(data.data));
                         });
                     }

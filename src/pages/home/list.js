@@ -8,13 +8,7 @@ import Loading from '../../components/loading';
 
 class List extends React.Component {
     render(){
-        const { fetchList, actions } = this.props;
-        if( __DEV__ ){
-            console.log(fetchList.isFetching);
-            console.log(actions);
-            console.log(fetchList.lists);
-        }
-        actions.fetchList();
+        const { fetchList } = this.props;
         return (
             <ul className="index-list">
                 {fetchList.isFetching ? Loading({type: 'bubbles', color: '#80bd01'}) :
@@ -27,8 +21,4 @@ class List extends React.Component {
     }
 }
 
-export default connect( state => {
-    return { fetchList: state.fetchList };
-}, dispatch => {
-    return { actions: bindActionCreators(fetchActions, dispatch)};
-})(List);
+export default List;

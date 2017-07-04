@@ -4,6 +4,9 @@ import { TabIcon, UserHeadImg } from '../../components';
 import { Tool } from '../../tool';
 
 class ListItem extends Component {
+    shouldComponentUpdate(nextProps) {
+        return nextProps.state != this.props.state;
+    }
     render() {
         let {id, title, author, visit_count, reply_count, create_at, last_reply_at} = this.props;
         return (

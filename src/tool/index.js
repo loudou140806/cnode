@@ -157,4 +157,16 @@ Tool.removeLocalItem = function (key) {
     return localStorage.removeItem();
 }
 
+Tool.setUrlParams = function(origin, params){
+    var result = origin;
+    for(var i in params){
+        if(!/\?/.test(result)){
+            result += '?' + i + '=' + params[i];
+        }else{
+            result +='&'+ i + '=' + params[i];
+        }
+    }
+    return result;
+}
+
 export { Tool, merged }

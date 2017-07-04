@@ -16,19 +16,18 @@ function Routes() {
                         <i className="iconfont icon-shouye"></i>首页
                     </NavLink>
                     <NavLink to="/publish" activeClassName="active">
-                        <i className="iconfont icon-shouye"></i>发表
+                        <i className="iconfont icon-fabu"></i>发表
                     </NavLink>
                     <NavLink to="/message" activeClassName="active">
                         <i className="iconfont icon-xiaoxi"></i>消息
                     </NavLink>
                     <NavLink to="/mine" activeClassName="active">
-                        <i className="iconfont icon-wode"></i>消息
+                        <i className="iconfont icon-wode"></i>我的
                     </NavLink>
                 </div>
                 <div>
                     <Redirect from="/" to="/home" />
-                    <Redirect from="/home" to="/home/all" />                    
-                    <Route path="/home" component={Home} />
+                    <Route path="/home/:name?" component={Home} />
                     <Route path="/publish" component={Publish} />
                     <Route path="/message" component={Message} />
                     <Route path="/mine" component={Mine} />
