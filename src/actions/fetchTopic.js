@@ -2,38 +2,38 @@ import { Tool } from '../tool';
 import fetch from 'isomorphic-fetch';
 
 let actions = {
-    fetchList: function(options) {
+    fetchTopic: function(options) {
         return function(dispatch, getState) {
-            dispatch(actions.beginFetchList());
-            const state = getState().fetchList;
-            const url = Tool.setUrlParams('/api/v1/topics', options);
+            dispatch(actions.beginfetchTopic());
+            const state = getState().fetchTopic;
+            const url = Tool.setUrlParams(options.url, options.params);
             fetch(url)
                 .then(res => {
                     if(res.status != 200) {
-                        dispatch(actions.failFetchList(res.statusText));
+                        dispatch(actions.failfetchTopic(res.statusText));
                     }
                     if(res.ok) {
                         res.json().then(function(data) {
-                            dispatch(actions.doneFetchList(data.data));
+                            dispatch(actions.donefetchTopic(data.data));
                         });
                     }
                 }).catch(e => {
-                dispatch(actions.failFetchList(e.statusText));
+                dispatch(actions.failfetchTopic(e.statusText));
             });
 
         }
     },
 
-    beginFetchList: () => ({
+    beginfetchTopic: () => ({
         type: 'BEGIN_FETCH_LIST'
     }),
 
-    doneFetchList: data => ({
+    donefetchTopic: data => ({
         type: 'DONE_FETCH_LIST',
         payload: data
     }),
 
-    failFetchList: errMsg => ({
+    failfetchTopic: errMsg => ({
         type: 'FAIL_FETCH_LIST',
         error: new Error(errMsg)
     })

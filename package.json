@@ -34,6 +34,7 @@
     "fetch": "^1.1.0",
     "flex.css": "^1.1.7",
     "github-markdown-css": "^2.8.0",
+    "isomorphic-fetch": "^2.2.1",
     "normalize.css": "^7.0.0",
     "obj-merged": "^1.0.5",
     "prop-types": "^15.5.10",
