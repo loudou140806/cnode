@@ -1,7 +1,12 @@
+@style-main : #80bd01;
+@style-bg: #eee;
+
 .index-list {
     overflow: hidden;
     background: #fff;
     margin-top: 38px;
+    margin-bottom: 40px;
+    color: #ccc;
     li {
         padding: 10px;
         border-bottom: 1px solid #ddd;
@@ -14,6 +19,7 @@
         font-size: 16px;
         white-space: nowrap;
         text-overflow: ellipsis;
+        color: #666;
     }
     .author {
         padding-right: 5px;
@@ -58,4 +64,45 @@
             background: #00B38A;
         }
     }
+
+    
+}
+
+.topNav {
+        text-align: center;
+        background: @style-main;
+        color: @style-bg;
+        height: 38px;
+        line-height: 38px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        a {
+            color: @style-bg;
+            padding: 3px 10px;
+            border-radius: 3px;
+        }
+        .on a{
+            background: darken(@style-main, 10%);
+        }
+    }
+
+// 首页样式
+.nav{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    background: @style-main;
+    a{
+        color: @style-bg;
+    }
+}
+
+.active{
+    background: lighten(@style-main, 10%);
 }

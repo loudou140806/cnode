@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import Loading from '../../components/loading';
-import { TabIcon, UserHeadImg } from '../../components';
+import { TabIcon, UserHeadImg, Loading } from '../../components';
 import { Tool } from '../../tool';
 
 class List extends Component {
     render(){
-        console.log('list')
         const { data, isFetching } = this.props;
         return (
-            <ul className="index-list">
-                {isFetching ? <Loading type='bubbles' color='#80bd01'/> :
+            <div className="index-list">
+                {
                     data.map((item, index) => {
                         return <ListItem key={item.id} {...item} />
                     })
                 }
-            </ul>
+                <Loading loadAnimation={isFetching} />
+            </div>
         );
     }
 }
