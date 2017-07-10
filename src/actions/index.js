@@ -123,6 +123,7 @@ let actions = {
                     }
                     if(res.ok) {
                         res.json().then(function(data) {
+                            console.log(data.data);
                             dispatch(actions.doneFetchMessage(data.data));
                         });
                     }
@@ -134,16 +135,16 @@ let actions = {
     },
 
     beginFetchMessage: () => ({
-        type: 'BEGIN_CREATE_TOPIC'
+        type: 'BEGIN_FETCH_MESSAGE'
     }),
 
     doneFetchMessage: data => ({
-        type: 'DONE_CREATE_TOPIC',
+        type: 'DONE_FETCH_MESSAGE',
         payload: data
     }),
 
     failFetchMessage: errMsg => ({
-        type: 'FAIL_CREATE_TOPIC',
+        type: 'FAIL_FETCH_MESSAGE',
         error: new Error(errMsg)
     }),
 
@@ -151,6 +152,48 @@ let actions = {
     loginIn: (data) => ({
         type: 'LOGIN_IN_SUCCESS',
         payload: data
+    }),
+
+    //退出登录
+    loginOut: () => ({
+        type: 'LOGIN_OUT'
+    }),
+
+    //用户详情
+    fetchDetail: function(url, options) {
+        return function(dispatch, getState) {
+            dispatch(actions.beginFetchDetail());
+            const address = Tool.setUrlParams(url, options);
+            fetch(address)
+                .then(res => {
+                    if(res.status != 200) {
+                        dispatch(actions.failFetchDetail(res.statusText));
+                    }
+                    if(res.ok) {
+                        res.json().then(function(data) {
+                            // console.log(data.data);
+                            dispatch(actions.doneFetchDetail(data.data));
+                        });
+                    }
+                }).catch(e => {
+                dispatch(actions.failFetchDetail(e.statusText));
+            });
+
+        }
+    },
+
+    beginFetchDetail: () => ({
+        type: 'BEGIN_FETCH_DETAIL'
+    }),
+
+    doneFetchDetail: data => ({
+        type: 'DONE_FETCH_DETAIL',
+        payload: data
+    }),
+
+    failFetchDetail: errMsg => ({
+        type: 'FAIL_FETCH_DETAIL',
+        error: new Error(errMsg)
     }),
     
 }

@@ -1,3 +1,4 @@
+import {Tool} from '../tool';
 //首页
 function fetchList(state = {isFetching: false, lists: [], page: 1, nextBtn: true, limit: 10, mdrender: false}, action) {
   let newState;
@@ -84,26 +85,48 @@ function fetchMessage(state = {isFetching: false, data:null}, action){
 }
 
 //登录
-function login(state = {}, action){
+// console.log(Tool.getOrSetItem('user'));
+function login(state = Tool.getOrSetItem('user'), action){
   let newState;
   switch (action.type) {
     case 'LOGIN_IN_SUCCESS':
+      Tool.getOrSetItem('user', action.payload);
+      newState = action.payload;
+      return newState;
+    case 'LOGIN_OUT':
+      Tool.removeItem('user');
+      return null;
+    default:
+      return state
+  }
+}
+
+//个人中心
+function fetchDetail(state = {isFetching: false, data:null}, action){
+  let newState;
+  switch (action.type) {
+    case 'BEGIN_FETCH_DETAIL':
       newState = Object.assign({}, state, {
-        loginname: action.payload.loginname, 
-        id: action.payload.id, 
-        avatar_url: action.payload.avatar_url,
-        accesstoken: action.payload.accesstoken
+        isFetching: true
       });
+      return newState;
+    case 'DONE_FETCH_DETAIL':
+      newState = Object.assign({}, state, {
+        isFetching: false,
+        data: action.payload
+      })
       return newState;
     default:
       return state
   }
 }
 
+
 export default {
   fetchList: fetchList,
   fetchTopic: fetchTopic,
   createTopic: createTopic,
   fetchMessage: fetchMessage,
-  User: login
+  User: login,
+  fetchDetail: fetchDetail
 };

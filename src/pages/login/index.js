@@ -12,7 +12,8 @@ class Mine extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            button: '登录'
+            button: '登录',
+            loginoutBtn: '退出登录'
         };
         this.signin = () => {
             var accesstoken = this.refs.accesstoken.value;
@@ -36,17 +37,40 @@ class Mine extends Component {
                 this.setState({ button: '登录' });
             });
         };
+        this.signOut = () => {
+            var accesstoken = this.props.User.accesstoken;
+            this.setState({ loginoutBtn: '退出登录中...' });
+            this.props.actions.loginOut();
+            this.props.history.push('/');
+        };
     }
     render() {
-        console.log(this.props);
-        return (
-            <div>
-                <Header title="登录" leftIcon="fanhui" leftClick={this.props.history.goBack}/>
-                <div className="signin" data-flex="dir:top main:center cross:center" style={{marginTop:'60px'}}>
-                    <div className="center">
+        const { User } = this.props;
+        let head = null;
+        let content = null;
+        if(!User){
+            head = (<Header title="登录" leftIcon="fanhui" leftClick={this.props.history.goBack}/>);
+            content = (<div className="center">
                         <div className="text"><input ref="accesstoken" type="text" placeholder="Access Token" /></div>
                         <button className="btn" onClick={this.signin}>{this.state.button}</button>
-                    </div>
+                    </div>);
+        }else {
+            head = (<Header title="退出登录" leftIcon="fanhui" leftClick={this.props.history.goBack}/>);
+            content = (<div className="center">
+                        <div className="text">确定退出登录？</div>
+                        <button className="loginout btn" onClick={this.signOut}>{this.state.loginoutBtn}</button>
+                    </div>)
+        }
+        return (
+            <div>
+                {/*<Header title="登录" leftIcon="fanhui" leftClick={this.props.history.goBack}/>*/}
+                {head}
+                <div className="signin" data-flex="dir:top main:center cross:center" style={{marginTop:'60px'}}>
+                    {/*<div className="center">
+                        <div className="text"><input ref="accesstoken" type="text" placeholder="Access Token" /></div>
+                        <button className="btn" onClick={this.signin}>{this.state.button}</button>
+                    </div>*/}
+                    {content}
                 </div>
             </div>
         );

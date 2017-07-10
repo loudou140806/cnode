@@ -11,8 +11,8 @@ class Message extends Component {
 
     componentDidMount() {
         const url = 'api/v1/messages';
+        if(!this.props.User) return false;
         const accesstoken = this.props.User.accesstoken;
-        if(!accesstoken) return;
         this.props.messageAction.fetchMessage(url, {
             accesstoken: accesstoken,
             mdrender: true
@@ -34,7 +34,6 @@ class Message extends Component {
             }else{
                 main = <Content list={hasnot_read_messages} />;
             }
-            debugger;
         }
         return (
             <div>

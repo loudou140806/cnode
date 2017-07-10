@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import queryString from 'query-string';
 import actions from '../../actions';
 import _style from '../../style/style.less';
 import './index.less';
-import queryString from 'query-string';
 import Nav from './nav';
 import List from './list';
 

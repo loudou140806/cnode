@@ -169,4 +169,21 @@ Tool.setUrlParams = function(origin, params){
     return result;
 }
 
+// 本地数据存储或读取
+Tool.getOrSetItem = function (key, value) {
+    if (arguments.length == 1) {
+        return JSON.parse(localStorage.getItem(key));
+    } else {
+        return localStorage.setItem(key, JSON.stringify(value));
+    }
+}
+
+// 删除本地数据
+Tool.removeItem = function (key) {
+    if (key) {
+        return localStorage.removeItem(key);
+    }
+    return localStorage.removeItem();
+}
+
 export { Tool, merged }

@@ -22,7 +22,7 @@ class Root extends Component {
                     <NavLink to="/message" activeClassName="active">
                         <i className="iconfont icon-xiaoxi"></i>消息
                     </NavLink>
-                    <NavLink to={User.loginname ? '/user/'+ User.loginname : '/login' } activeClassName="active">
+                    <NavLink to={User ? '/user/'+ User.loginname : '/login' } activeClassName="active">
                         <i className="iconfont icon-wode"></i>我的
                     </NavLink>
                 </div>

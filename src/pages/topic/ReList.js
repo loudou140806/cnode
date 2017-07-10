@@ -42,7 +42,7 @@ class ReList extends Component {
                                 </div>
                                 <div className="main" data-flex-box="1">
                                     <div data-flex="main:justify">
-                                        {/*<NavLink to={'/Mine/' + author.loginname} className="name">{author.loginname}</NavLink>*/}
+                                        <NavLink to={'/user/' + author.loginname} className="name">{author.loginname}</NavLink>
                                         <time data-flex-box="1">{Tool.formatDate(create_at)}</time>
                                         <div className="lou">#{++index}</div>
                                     </div>
@@ -56,7 +56,7 @@ class ReList extends Component {
                                             <i className="iconfont icon-huifu"></i>
                                         </div>
                                     </div>
-                                    {/*<ReplyBox placeholder={`@${author.loginname}`} reLoadData={this.props.reLoadData} display={display} loginname={author.loginname} data={{ accesstoken, id: this.props.id, reply_id: id }} />*/}
+                                    <ReplyBox placeholder={`@${author.loginname}`} reLoadData={this.props.reLoadData} display={display} loginname={author.loginname} data={{ accesstoken, id: this.props.id, reply_id: id }} />
                                 </div>
                             </li>
                         );
