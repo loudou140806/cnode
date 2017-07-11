@@ -10,7 +10,7 @@ class Article extends Component {
         super(props);
     }
     render() {
-        var {id, title, create_at, visit_count, reply_count, content, replies, author} = this.props.fetchTopic.data;
+        var {id, title, create_at, visit_count, reply_count, content, replies, author} = this.props.state.data;
         var createMarkup = () => {
             return {
                 __html: content
@@ -28,7 +28,7 @@ class Article extends Component {
                             <NavLink to={'/user/' + author.loginname} className="name">{author.loginname}</NavLink>
                             <time data-flex-box="1">{Tool.formatDate(create_at)}</time>
                             <div className="lou">#楼主</div>
-                            <div className="font" data-flex="main:center cross:center"><TabIcon {...this.props.fetchTopic.data} /></div>
+                            <div className="font" data-flex="main:center cross:center"><TabIcon {...this.props.state.data} /></div>
                         </div>
                         <div className="qt" data-flex>
                             <div>阅读：{visit_count}</div>

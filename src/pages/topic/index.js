@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Loading, Header } from '../../components';
 import Article from './Article';
 import actions from '../../actions';
+import { Tool } from '../../tool';
 import './index.less';
 
 class Topic extends Component {
@@ -15,7 +16,7 @@ class Topic extends Component {
             var accesstoken = this.props.User ? this.props.User.accesstoken : '';
             var uid = this.props.User ? this.props.User.id : '';
             if (!accesstoken) {
-                return this.context.router.history.push({ pathname: '/signin' }); //跳转到登录
+                return this.props.history.push({ pathname: '/login' }); //跳转到登录
             } else if (this.props.User.loginname === loginname) {
                 return alert('你不能给自己点赞');
             }
@@ -31,7 +32,7 @@ class Topic extends Component {
                 } else {
                     ups.push(uid);
                 }
-                this.props.setState(this.props.state);
+                this.setState(this.props.state);
             });
         }
 
@@ -48,24 +49,23 @@ class Topic extends Component {
                 this.props.state.data.replies[index].display = 'block';
             }
 
-            this.props.setState(this.props.state);
+            this.setState(this.props.state);
         }
         // 回复成功后，重新加载数据
         this.reLoadData = (data) => {
             this.props.state.data = data;
-            this.props.setState(this.props.state);
+            this.setState(this.props.state);
         }
     }
     componentDidMount() {
         const url = 'api/v1/' + this.props.location.pathname;
-        this.props.fetchTopicAction.fetchTopic(url, {
+        this.props.actions.fetchTopic(url, {
             mdrender: true
         });
     }
     render() {
-        var {data, isFetching, id} = this.props.fetchTopic;
-        console.log(this.props.fetchTopic);
-        console.log(Boolean({}))
+        var {data, isFetching, id} = this.props.state;
+        console.log(this.props.state);
         var main = data ? <Article {...this.props} reLoadData={this.reLoadData} clickZan={this.clickZan} showReplyBox={this.showReplyBox} /> : <Loading loadAnimation={isFetching} />;
         var headerSet = {
             leftIcon: 'fanhui',
@@ -83,7 +83,7 @@ class Topic extends Component {
 }
 
 export default connect(state => {
-    return { fetchTopic: state.fetchTopic }
+    return { state: state.fetchTopic,User: state.User }
 }, dispatch => {
-    return { fetchTopicAction: bindActionCreators(actions, dispatch) }
+    return { actions: bindActionCreators(actions, dispatch) }
 })(Topic);

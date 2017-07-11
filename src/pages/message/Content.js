@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+import { NavLink } from 'react-router-dom';
+import { UserHeadImg } from '../../components';
+import { Tool } from '../../tool';
 // 消息内容
 class Content extends Component {
     render() {

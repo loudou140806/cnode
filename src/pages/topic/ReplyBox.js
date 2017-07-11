@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'react-dom';
+import { Tool } from '../../tool';
 
 //回复框
 
@@ -12,6 +13,7 @@ class ReplyBox extends Component {
         this.submit = () => {
             this.state = { btnname: '提交中...' }
             var data = this.props.data;
+            console.log(data);
             if (data.reply_id) {
                 data.content = `[@${this.props.loginname}](/user/${this.props.loginname}) ${this.refs.content.value}`;
             } else {
@@ -20,7 +22,7 @@ class ReplyBox extends Component {
             if (data.content == '') {
                 return alert('回复内容不能为空！');
             }
-            data.content += '\n\r<br><br>来自<a href="https://lzxb.github.io/react-cnode/" target="_blank">react-cnode手机版</a>';
+            data.content += '\n\r</br>-----来自<a href="https://loudou140806.github.io/cnode/" target="_blank">cnode手机版</a>';
             Tool.post(`/api/v1//topic/${data.id}/replies`, data, (res) => {
                 this.setState({ btnname: '回复成功，刷新页面中..' });
                 this.refs.content.value = '';
@@ -53,8 +55,5 @@ ReplyBox.defaultProps = {
     display: 'block',
     placeholder: '回复支持Markdown语法,请注意标记代码'
 };
-ReplyBox.contextTypes = {
-    router: PropTypes.object
-}
 
 export default ReplyBox;

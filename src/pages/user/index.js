@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Loading, Header, UserHeadImg } from '../../components';
 import actions from '../../actions';
 import { Tool } from '../../tool';
+import './index.less';
 
 class UserView extends Component {
     constructor(props) {

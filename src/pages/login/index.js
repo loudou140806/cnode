@@ -63,13 +63,8 @@ class Mine extends Component {
         }
         return (
             <div>
-                {/*<Header title="登录" leftIcon="fanhui" leftClick={this.props.history.goBack}/>*/}
                 {head}
                 <div className="signin" data-flex="dir:top main:center cross:center" style={{marginTop:'60px'}}>
-                    {/*<div className="center">
-                        <div className="text"><input ref="accesstoken" type="text" placeholder="Access Token" /></div>
-                        <button className="btn" onClick={this.signin}>{this.state.button}</button>
-                    </div>*/}
                     {content}
                 </div>
             </div>

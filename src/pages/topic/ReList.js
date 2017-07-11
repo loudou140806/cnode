@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import NavLink from 'react-router-dom';
-import　{ UserHeadImg, ReplyBox } from '../../components';
+import { NavLink } from 'react-router-dom';
+import { UserHeadImg } from '../../components';
+import ReplyBox from './ReplyBox';
 import { Tool } from '../../tool';
-// 回复列表
 
+// 回复列表
 class ReList extends Component {
     constructor(props) {
         super(props);
