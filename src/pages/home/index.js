@@ -46,6 +46,7 @@ class Home extends Component {
         }
     }
     componentDidMount() {
+        console.log('homeMount');
         const scroll = window.addEventListener('scroll', this.handleScroll);
         const { page, limit, mdrender } = this.props.state;
         this.props.actions.fetchList('/api/v1/topics', {
@@ -65,7 +66,7 @@ class Home extends Component {
         return (
             <div>
                 <Nav tab={tab} changeTab={this.changeTab} {...this.props}/>
-                <List key={tab} data={state.lists} isFetching={state.isFetching}/>
+                <List data={state.lists} isFetching={state.isFetching}/>
             </div>
         );
     }

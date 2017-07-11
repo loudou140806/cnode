@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import queryString from 'query-string';
 import { Loading, Header, UserHeadImg } from '../../components';
 import actions from '../../actions';
 import { Tool } from '../../tool';
@@ -21,7 +22,9 @@ class UserView extends Component {
         this.signOut = () => {
             this.props.history.push()
         }
-        const url = '/api/v1/user/'+ this.props.User.loginname;
+        const username = this.props.location.pathname.split('/')[this.props.location.pathname.split('/').length - 1];
+        const url = '/api/v1/user/' + username;
+        
         this.props.actions.fetchDetail(url, {});
     }
     render() {

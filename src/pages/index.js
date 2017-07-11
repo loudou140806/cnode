@@ -39,6 +39,6 @@ class Root extends Component {
 
 export default connect(
     state => {
-        return { User: state.User }
+        return { User: state.User,Home: state.fetchList }
     }
 )(Root);
