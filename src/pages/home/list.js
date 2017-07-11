@@ -4,6 +4,9 @@ import { TabIcon, UserHeadImg, Loading } from '../../components';
 import { Tool } from '../../tool';
 
 class List extends Component {
+    componentDidMount() {
+        console.log('listMount');
+    }
     render(){
         const { data, isFetching } = this.props;
         return (

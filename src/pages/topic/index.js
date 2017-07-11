@@ -11,7 +11,7 @@ import './index.less';
 class Topic extends Component {
     constructor(props) {
         super(props);
-            //点赞或取消赞
+        //点赞或取消赞
         this.clickZan = (id, index, loginname) => {
             var accesstoken = this.props.User ? this.props.User.accesstoken : '';
             var uid = this.props.User ? this.props.User.id : '';
@@ -20,7 +20,6 @@ class Topic extends Component {
             } else if (this.props.User.loginname === loginname) {
                 return alert('你不能给自己点赞');
             }
-
             Tool.post(`/api/v1/reply/${id}/ups`, { accesstoken }, (res) => {
                 var ups = this.props.state.data.replies[index - 1].ups;
                 if (res.action == 'down') { //取消点赞
@@ -40,7 +39,7 @@ class Topic extends Component {
         this.showReplyBox = (index) => {
             var accesstoken = this.props.User ? this.props.User.accesstoken : '';
             if (!accesstoken) {
-                return this.context.router.history.push({ pathname: '/signin' }); //跳转到登录
+                return this.props.history.push({ pathname: '/signin' }); //跳转到登录
             }
             --index;
             if (this.props.state.data.replies[index].display === 'block') {

@@ -5,7 +5,7 @@ let actions = {
     //首页
     fetchList: function(url, options) {
         return function(dispatch, getState) {
-            dispatch(actions.beginFetchList());
+            dispatch(actions.beginFetchList(options.tab));
             const address = Tool.setUrlParams(url, options);
             fetch(address)
                 .then(res => {
@@ -14,7 +14,7 @@ let actions = {
                     }
                     if(res.ok) {
                         res.json().then(function(data) {
-                            dispatch(actions.doneFetchList(data.data));
+                            dispatch(actions.doneFetchList(data.data, options.tab));
                         });
                     }
                 }).catch(e => {
@@ -24,13 +24,15 @@ let actions = {
         }
     },
 
-    beginFetchList: () => ({
-        type: 'BEGIN_FETCH_LIST'
+    beginFetchList: tab => ({
+        type: 'BEGIN_FETCH_LIST',
+        tab: tab
     }),
 
-    doneFetchList: data => ({
+    doneFetchList: (data, tab) => ({
         type: 'DONE_FETCH_LIST',
-        payload: data
+        payload: data,
+        tab: tab
     }),
 
     failFetchList: errMsg => ({

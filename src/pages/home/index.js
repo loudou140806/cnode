@@ -12,35 +12,44 @@ import List from './list';
 class Home extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            tab: 'all',
-            data: this.props.fetchList.lists
-        }
-        this.handleScroll = this.handleScroll.bind(this);
-    }
-    handleScroll(e) {
-        const indexList = document.querySelector('.index-list');
-        if(!indexList)return;
-        const scrollTop = window.scrollY;
-        const listHeight = indexList.clientHeight - 80;
-        const containerHeight = window.outerHeight;
-        const { page, limit, mdrender, isFetching } = this.props.fetchList;
-        const tab = queryString.parse(this.props.location.search).tab || 'all';
-        if(scrollTop > (listHeight - containerHeight -30)) {
-            if(isFetching) return false;
-            this.props.fetchListAction.fetchList('/api/v1/topics', {
-                tab: tab,
+        this.handleScroll = (e) => {
+            const indexList = document.querySelector('.index-list');
+            if(!indexList)return;
+            const scrollTop = window.scrollY;
+            const listHeight = indexList.clientHeight - 80;
+            const containerHeight = window.outerHeight;
+            const { page, limit, mdrender, isFetching } = this.props.state;
+            const tab = queryString.parse(this.props.location.search).tab || 'all';
+            if(scrollTop > (listHeight - containerHeight -30)) {
+                if(isFetching) return;
+                this.props.actions.fetchList('/api/v1/topics', {
+                    tab: tab,
+                    limit,
+                    page,
+                    mdrender
+                });
+            }
+        };
+        this.changeTab = (tab) => {
+            const { limit, mdrender } = this.props.state;
+            let page = this.props.state.page;
+            if( tab !== this.props.state.tab ) {
+                page = 1;
+            }
+            this.props.actions.fetchList('/api/v1/topics', {
+                tab: tab || 'all',
                 limit,
-                page,
+                page: page,
                 mdrender
             });
+            this.setState(this.props.state);
         }
     }
     componentDidMount() {
         const scroll = window.addEventListener('scroll', this.handleScroll);
-        const { page, limit, mdrender } = this.props.fetchList;
-        this.props.fetchListAction.fetchList('/api/v1/topics', {
-            tab: this.state.tab,
+        const { page, limit, mdrender } = this.props.state;
+        this.props.actions.fetchList('/api/v1/topics', {
+            tab: queryString.parse(this.props.location.search).tab || 'all',
             limit,
             page,
             mdrender
@@ -50,26 +59,20 @@ class Home extends Component {
         console.log('unmount HOME')
         window.removeEventListener('scroll', scroll);
     }
-    componentWillReceiveProps() {
-
-    }
-    // shouldComponentUpdate(np) {
-    //     return this.props.fetchList.lists !== np.fetchList.lists;
-    // }
     render(){
         const tab = queryString.parse(this.props.location.search).tab || 'all';
-        const { fetchListAction, fetchList } = this.props;
+        const { state } = this.props;
         return (
             <div>
-                <Nav tab={tab} {...this.props}/>
-                <List data={fetchList.lists} isFetching={fetchList.isFetching}/>
+                <Nav tab={tab} changeTab={this.changeTab} {...this.props}/>
+                <List key={tab} data={state.lists} isFetching={state.isFetching}/>
             </div>
         );
     }
 }
 
 export default connect( state => {
-    return { fetchList: state.fetchList };
+    return { state: state.fetchList };
 }, (dispatch) => {
-    return { fetchListAction: bindActionCreators(actions, dispatch)};
+    return { actions: bindActionCreators(actions, dispatch)};
 })(Home);

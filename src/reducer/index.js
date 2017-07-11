@@ -1,12 +1,20 @@
 import {Tool} from '../tool';
 //首页
-function fetchList(state = {isFetching: false, lists: [], page: 1, nextBtn: true, limit: 10, mdrender: false}, action) {
-  let newState;
+function fetchList(state = {isFetching: false, lists: [], page: 1, nextBtn: true, limit: 10, mdrender: false, tab: 'all'}, action) {
+  let newState, lists, page, tab;
   switch (action.type) {
     case 'BEGIN_FETCH_LIST':
       if(state.isFetching) return state;
+      if(state.tab !== action.tab){
+        lists = [];
+        tab = action.tab;
+      }else {
+        lists = state.lists;
+      }
       newState = Object.assign({}, state, {
-          isFetching: true
+          isFetching: true,
+          lists: lists,
+          tab: tab || state.tab
       });
       return newState;
     case 'FAIL_FETCH_LIST':
@@ -15,10 +23,19 @@ function fetchList(state = {isFetching: false, lists: [], page: 1, nextBtn: true
       })
       return newState;
     case 'DONE_FETCH_LIST':
+      if(state.tab !== action.tab){
+        lists = action.payload;
+        page = 2;
+        tab = action.tab;
+      }else {
+        lists = state.lists.concat(action.payload);
+        page = state.page + 1;
+      }
       newState = Object.assign({}, state, {
         isFetching: false,
-        lists: state.lists.concat(action.payload),
-        page: state.page + 1
+        lists: lists,
+        page: page,
+        tab: tab || state.tab
       })
       return newState;
     default:
