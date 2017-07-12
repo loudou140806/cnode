@@ -2,7 +2,7 @@
 基于webpack + react + react-router + redux + less + flex.css + ES6 的React版cnode社区
 
 ### demo
- [![demo]](http://loumingjie.cn/cnode/)
+ [![demo](https://github.com/loudou140806/cnode/raw/master/clip/QR.png)](http://loumingjie.cn/cnode/)
 
 ### 下载
 ```
