@@ -15,7 +15,7 @@ plugin.push(new webpack.DefinePlugin({
 plugin.push(new htmlWebpackPlugin({
     filename: '../index.html', //生成的html存放路径，相对于 path
     template: './src/template/index.html', //html模板路径
-    hash: true,    //为静态资源生成hash值
+    // hash: true,    //为静态资源生成hash值
 }))
 
 plugin.push(new webpack.HotModuleReplacementPlugin());
