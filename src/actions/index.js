@@ -1,12 +1,13 @@
 import { Tool } from '../tool';
 import fetch from 'isomorphic-fetch';
+const target = process.env.NODE_ENV !== 'production' ? '' : 'https://cnodejs.org'; //目标网站
 
 let actions = {
     //首页
     fetchList: function(url, options) {
         return function(dispatch, getState) {
             dispatch(actions.beginFetchList(options.tab));
-            const address = Tool.setUrlParams(url, options);
+            const address = target + Tool.setUrlParams(url, options);
             fetch(address)
                 .then(res => {
                     if(res.status != 200) {
@@ -45,7 +46,7 @@ let actions = {
         return function(dispatch, getState) {
             dispatch(actions.beginfetchTopic());
             const state = getState().fetchTopic;
-            const address = Tool.setUrlParams(url, options);
+            const address = target + Tool.setUrlParams(url, options);
             fetch(address)
                 .then(res => {
                     if(res.status != 200) {
@@ -81,7 +82,7 @@ let actions = {
     createTopic: function(url, options) {
         return function(dispatch, getState) {
             dispatch(actions.beginCreateTopic());
-            const address = Tool.setUrlParams(url, options);
+            const address = target + Tool.setUrlParams(url, options);
             fetch(address)
                 .then(res => {
                     if(res.status != 200) {
@@ -117,7 +118,7 @@ let actions = {
     fetchMessage: function(url, options) {
         return function(dispatch, getState) {
             dispatch(actions.beginFetchMessage());
-            const address = Tool.setUrlParams(url, options);
+            const address = target + Tool.setUrlParams(url, options);
             fetch(address)
                 .then(res => {
                     if(res.status != 200) {
@@ -165,7 +166,7 @@ let actions = {
     fetchDetail: function(url, options) {
         return function(dispatch, getState) {
             dispatch(actions.beginFetchDetail());
-            const address = Tool.setUrlParams(url, options);
+            const address = target + Tool.setUrlParams(url, options);
             fetch(address)
                 .then(res => {
                     if(res.status != 200) {
