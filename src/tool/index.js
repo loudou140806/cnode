@@ -1,6 +1,6 @@
 import merged from 'obj-merged';
 
-const target = process.env.__DEV__ !== true ? '' : 'https://cnodejs.org';
+const target = 'https://cnodejs.org';
 const Tool = {};
 /**
  * 发送ajax请求和服务器交互

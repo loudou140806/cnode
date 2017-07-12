@@ -1,6 +1,6 @@
 import { Tool } from '../tool';
 import fetch from 'isomorphic-fetch';
-const target = process.env.NODE_ENV !== 'production' ? '' : 'https://cnodejs.org'; //目标网站
+const target = 'https://cnodejs.org'; //目标网站
 
 let actions = {
     //首页
@@ -8,6 +8,7 @@ let actions = {
         return function(dispatch, getState) {
             dispatch(actions.beginFetchList(options.tab));
             const address = target + Tool.setUrlParams(url, options);
+            console.log(target);
             fetch(address)
                 .then(res => {
                     if(res.status != 200) {

@@ -10,7 +10,7 @@ import { Loading, Header, TipMsgSignin, UserHeadImg, NoData } from '../../compon
 class Message extends Component {
 
     componentDidMount() {
-        const url = 'api/v1/messages';
+        const url = '/api/v1/messages';
         if(!this.props.User) return false;
         const accesstoken = this.props.User.accesstoken;
         this.props.messageAction.fetchMessage(url, {

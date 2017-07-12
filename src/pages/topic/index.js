@@ -57,7 +57,7 @@ class Topic extends Component {
         }
     }
     componentDidMount() {
-        const url = 'api/v1/' + this.props.location.pathname;
+        const url = '/api/v1/' + this.props.location.pathname;
         this.props.actions.fetchTopic(url, {
             mdrender: true
         });
