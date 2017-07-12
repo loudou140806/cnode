@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "00fdc57f29c73907dbb0"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ef5dbc6a2ffdf25c8ae9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -33887,7 +33887,8 @@ function Routes() {
             null,
             _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _login2.default }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/topic/:id?', component: _topic2.default }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _pages2.default })
+            _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _pages2.default }),
+            _react2.default.createElement(_reactRouterDom.Redirect, { from: '', to: '/' })
         )
     );
 }
