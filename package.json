@@ -4,7 +4,8 @@
   "description": "cnode based on react",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "dist": "webpack --progress --colors -p"
   },
   "author": "546587684@qq.com",
   "license": "ISC",

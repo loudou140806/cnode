@@ -15,6 +15,7 @@ function Routes() {
                 <Route path='/login' component={Login}/>
                 <Route path='/topic/:id?' component={Topic} />
                 <Route path='/' component={Index} />
+                <Redirect from='' to="/" />
             </Switch>
         </Router>
     );

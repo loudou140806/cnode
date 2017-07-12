@@ -7,15 +7,20 @@ var path = __dirname + '/dist'
 
 var plugin = [];
 
-plugin.push(new webpack.DefinePlugin({
-  __DEV__: JSON.stringify(JSON.parse(process.env.BUILD_DEV || 'true')),
-  __PRERELEASE__: JSON.stringify(JSON.parse(process.env.BUILD_PRERELEASE || 'false'))
-}));
+if (process.argv.indexOf('-p') > -1) { //生产环境
+    plugin.push(new webpack.DefinePlugin({ //编译成生产版本
+        'process.env': {
+            NODE_ENV: JSON.stringify('production')
+        }
+    }));
+    publicPath = '/cnode/dist/';
+    path = __dirname + '/cnode/dist/';
+}
 
 plugin.push(new htmlWebpackPlugin({
     filename: '../index.html', //生成的html存放路径，相对于 path
     template: './src/template/index.html', //html模板路径
-    // hash: true,    //为静态资源生成hash值
+    hash: true,    //为静态资源生成hash值
 }))
 
 plugin.push(new webpack.HotModuleReplacementPlugin());
