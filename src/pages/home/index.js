@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import queryString from 'query-string';
 import actions from '../../actions';
+import { Tool } from '../../tool';
 import _style from '../../style/style.less';
 import './index.less';
 import Nav from './nav';
@@ -48,7 +49,8 @@ class Home extends Component {
     }
     componentDidMount() {
         console.log('homeMount');
-        const scroll = window.addEventListener('scroll', this.handleScroll);
+        // const scroll = window.addEventListener('scroll', this.handleScroll);
+        var scroll = Tool.addEvent(window, 'scroll', this.handleScroll, false);
         const { page, limit, mdrender } = this.props.state;
         this.props.actions.fetchList('/api/v1/topics', {
             tab: queryString.parse(this.props.location.search).tab || 'all',
@@ -56,10 +58,6 @@ class Home extends Component {
             page,
             mdrender
         });
-    }
-    componentUnMount() {
-        console.log('unmount HOME')
-        window.removeEventListener('scroll', scroll);
     }
     render(){
         const tab = queryString.parse(this.props.location.search).tab || 'all';

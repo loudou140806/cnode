@@ -2,9 +2,8 @@ import merged from 'obj-merged';
 
 const target = 'https://cnodejs.org';
 const Tool = {};
-/**
- * 发送ajax请求和服务器交互
- */
+
+//发送ajax请求和服务器交互
 Tool.ajax = function (mySetting) {
 
     var setting = {
@@ -86,9 +85,9 @@ Tool.ajax = function (mySetting) {
     }
     return xhr;
 };
-/**
- * 封装ajax post请求
- */
+
+//封装ajax post请求
+
 Tool.post = function (pathname, data, success, error) {
     var setting = {
         url: target + pathname, //默认ajax请求地址
@@ -99,9 +98,9 @@ Tool.post = function (pathname, data, success, error) {
     };
     return Tool.ajax(setting);
 };
-/**
- * 封装ajax get请求
- */
+
+//封装ajax get请求
+
 Tool.get = function (pathname, data, success, error) {
     var setting = {
         url: target + pathname, //默认ajax请求地址
@@ -113,9 +112,9 @@ Tool.get = function (pathname, data, success, error) {
     return Tool.ajax(setting);
 };
 
-/**
- * 格式化时间
- */
+
+//格式化时间
+
 Tool.formatDate = function (str) {
     var date = new Date(str);
     var time = new Date().getTime() - date.getTime(); //现在的时间-传入的时间 = 相差的时间（单位 = 毫秒）
@@ -136,9 +135,9 @@ Tool.formatDate = function (str) {
     }
 }
 
-/**
- * 本地数据存储或读取
- */
+
+//本地数据存储或读取
+
 Tool.localItem = function (key, value) {
     if (arguments.length == 1) {
         return localStorage.getItem(key);
@@ -147,9 +146,9 @@ Tool.localItem = function (key, value) {
     }
 }
 
-/**
- * 删除本地数据
- */
+
+//删除本地数据
+
 Tool.removeLocalItem = function (key) {
     if (key) {
         return localStorage.removeItem(key);
@@ -184,6 +183,18 @@ Tool.removeItem = function (key) {
         return localStorage.removeItem(key);
     }
     return localStorage.removeItem();
+}
+
+Tool.addEvent = function(el, event, fn, type) {
+    var type = type || false;
+    if(typeof el !== 'object' || typeof event !== 'string' || typeof fn !== 'function' || typeof type !== 'boolean'){
+        console.log('参数格式错误');
+    }
+    if(window.addEventListener){
+        return el.addEventListener(event, fn, type);
+    }else{
+        return el.attachEvent('on'+event, fn, type);
+    }
 }
 
 export { Tool, merged }
