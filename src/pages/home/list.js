@@ -10,7 +10,7 @@ class List extends Component {
     render(){
         const { data, isFetching } = this.props;
         return (
-            <div className="index-list">
+            <div className="index-list" onScroll={this.props.handleScroll}>
                 {
                     data.map((item, index) => {
                         return <ListItem key={item.id} {...item} />

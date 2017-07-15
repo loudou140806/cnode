@@ -13,6 +13,7 @@ class Home extends Component {
     constructor(props){
         super(props);
         this.handleScroll = (e) => {
+            console.log('handleScroll');
             const indexList = document.querySelector('.index-list');
             if(!indexList)return;
             const scrollTop = window.scrollY;
@@ -66,7 +67,7 @@ class Home extends Component {
         return (
             <div>
                 <Nav tab={tab} changeTab={this.changeTab} {...this.props}/>
-                <List data={state.lists} isFetching={state.isFetching}/>
+                <List data={state.lists} isFetching={state.isFetching}　handleScroll={this.handleScroll}/>
             </div>
         );
     }

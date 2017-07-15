@@ -41,17 +41,17 @@
 ```
 ### 截图
 
-![截图](https://github.com/loudou140806/cnode/raw/gh-pages/clip/1.png)
+![截图](https://github.com/loudou140806/cnode/raw/master/clip/1.png)
 
-![截图](https://github.com/loudou140806/cnode/raw/gh-pages/clip/2.png)
+![截图](https://github.com/loudou140806/cnode/raw/master/clip/2.png)
 
-![截图](https://github.com/loudou140806/cnode/raw/gh-pages/clip/3.png)
+![截图](https://github.com/loudou140806/cnode/raw/master/clip/3.png)
 
-![截图](https://github.com/loudou140806/cnode/raw/gh-pages/clip/4.png)
+![截图](https://github.com/loudou140806/cnode/raw/master/clip/4.png)
 
-![截图](https://github.com/loudou140806/cnode/raw/gh-pages/clip/5.png)
+![截图](https://github.com/loudou140806/cnode/raw/master/clip/5.png)
 
-![截图](https://github.com/loudou140806/cnode/raw/gh-pages/clip/6.png)
+![截图](https://github.com/loudou140806/cnode/raw/master/clip/6.png)
 
-![截图](https://github.com/loudou140806/cnode/raw/gh-pages/clip/7.png)
+![截图](https://github.com/loudou140806/cnode/raw/master/clip/7.png)
 
