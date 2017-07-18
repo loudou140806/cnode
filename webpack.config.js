@@ -25,6 +25,11 @@ plugin.push(new htmlWebpackPlugin({
 
 plugin.push(new webpack.HotModuleReplacementPlugin());
 
+plugin.push(new webpack.DllReferencePlugin({
+            context: __dirname,
+            manifest: require('./manifest.json'),
+        }))
+
 module.exports = {
     devtool:'inline-source-map',
     entry: {
