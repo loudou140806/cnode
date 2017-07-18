@@ -26,6 +26,7 @@ plugin.push(new htmlWebpackPlugin({
 plugin.push(new webpack.HotModuleReplacementPlugin());
 
 module.exports = {
+    devtool:'inline-source-map',
     entry: {
         app: ['./src/index']
     },

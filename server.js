@@ -5,7 +5,9 @@ var config = require('./webpack.config');
 config.entry.app.unshift("webpack-dev-server/client?http://localhost:8080/", "webpack/hot/dev-server");
 
 var server = new webpackDevServer(webpack(config), {
+    host: '0.0.0.0',
     hot: true,
+    disableHostCheck: true,
     publicPath: config.output.publicPath,
     proxy: {
         "/api/*": {

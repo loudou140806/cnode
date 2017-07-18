@@ -14,15 +14,11 @@ class Home extends Component {
     constructor(props){
         super(props);
         this.handleScroll = (e) => {
-            console.log('handleScroll');
-            const indexList = document.querySelector('.index-list');
-            if(!indexList)return;
-            const scrollTop = window.pageYOffset;
-            const listHeight = indexList.clientHeight - 80;
-            const containerHeight = window.outerHeight;
+            const target = e.target;
+            const scrollTop = target.scrollTop,scrollHeight = target.scrollHeight - 78,containerHeight = window.innerHeight;
             const { page, limit, mdrender, isFetching } = this.props.state;
             const tab = queryString.parse(this.props.location.search).tab || 'all';
-            if(scrollTop > (listHeight - containerHeight -30)) {
+            if(scrollTop > (scrollHeight - containerHeight -30)) {
                 if(isFetching) return;
                 this.props.actions.fetchList('/api/v1/topics', {
                     tab: tab,
@@ -49,7 +45,7 @@ class Home extends Component {
     }
     componentDidMount() {
         console.log('homeMount');
-        var scroll = Tool.addEvent(window, 'scroll', this.handleScroll, false);
+        // var scroll = Tool.addEvent(window, 'scroll', this.handleScroll, false);
         const { page, limit, mdrender } = this.props.state;
         this.props.actions.fetchList('/api/v1/topics', {
             tab: queryString.parse(this.props.location.search).tab || 'all',
