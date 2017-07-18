@@ -17,7 +17,7 @@ class Home extends Component {
             console.log('handleScroll');
             const indexList = document.querySelector('.index-list');
             if(!indexList)return;
-            const scrollTop = window.scrollY;
+            const scrollTop = window.pageYOffset;
             const listHeight = indexList.clientHeight - 80;
             const containerHeight = window.outerHeight;
             const { page, limit, mdrender, isFetching } = this.props.state;
@@ -49,7 +49,6 @@ class Home extends Component {
     }
     componentDidMount() {
         console.log('homeMount');
-        // const scroll = window.addEventListener('scroll', this.handleScroll);
         var scroll = Tool.addEvent(window, 'scroll', this.handleScroll, false);
         const { page, limit, mdrender } = this.props.state;
         this.props.actions.fetchList('/api/v1/topics', {

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server.js",
-    "dist": "webpack --progress --colors -p"
+    "dist": "webpack --progress --colors -p",
+    "deploy": "gh-pages -d cnode"
   },
   "author": "546587684@qq.com",
   "license": "ISC",
@@ -21,6 +22,7 @@
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
+    "gh-pages": "^1.0.0",
     "html-webpack-plugin": "^2.28.0",
     "jsx-loader": "^0.13.2",
     "less": "^2.7.2",
