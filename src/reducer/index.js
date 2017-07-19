@@ -1,4 +1,5 @@
 import {Tool} from '../tool';
+import 'es6-object-assign/auto';
 //首页
 function fetchList(state = {isFetching: false, lists: [], page: 1, nextBtn: true, limit: 10, mdrender: false, tab: 'all'}, action) {
   let newState, lists, page, tab;

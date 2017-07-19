@@ -45,7 +45,6 @@ class Home extends Component {
     }
     componentDidMount() {
         console.log('homeMount');
-        // var scroll = Tool.addEvent(window, 'scroll', this.handleScroll, false);
         const { page, limit, mdrender } = this.props.state;
         this.props.actions.fetchList('/api/v1/topics', {
             tab: queryString.parse(this.props.location.search).tab || 'all',
