@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const path = __dirname + '/dist';
+const path = process.argv.indexOf('-p') > -1 ? __dirname + '/cnode/dist' : __dirname + '/dist';
 
 const vendors = [
     'react',
@@ -16,7 +16,7 @@ module.exports = {
     },
     output: {
         path,
-        filename: '[name].js',
+        filename: 'dll.[name].js',
         library: '[name]',
     },
     

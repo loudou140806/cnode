@@ -4,8 +4,12 @@
   "description": "cnode based on react",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
-    "dist": "webpack --progress --colors -p",
+    "clean": "rimraf cnode",
+    "dev:dll": "webpack --config webpack.dll.config.js --progress",
+    "build:dll": "webpack --config webpack.dll.config.js -p --progress",
+    "dev": "npm run dev:dll && node server.js",
+    "build:webpack": "webpack --config webpack.config.js --progress --color -p",
+    "build": "npm run clean && npm run build:dll && npm run build:webpack",
     "deploy": "gh-pages -d cnode"
   },
   "author": "546587684@qq.com",
